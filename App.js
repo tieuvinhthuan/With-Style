@@ -2,6 +2,8 @@
 import React from 'react';
 import {StyleSheet, Text, View, FlatList, TouchableOpacity, Image} from 'react-native';
 
+import Constants from 'expo-constants';
+
 
 const mediaArray = [
   {
@@ -39,17 +41,18 @@ const mediaArray = [
 const App = () => {
   return (
     <View style={styles.container}>
+      <Text style={styles.statusBar}>My First App</Text>
       <FlatList
         data={mediaArray}
         renderItem={({item}) => {
           return (
-            <TouchableOpacity style={{flex: 1, flexDirection: 'row'}}>
+            <TouchableOpacity style={styles.profileContainer}>
               <Image
-                style={{width: 100, height: 100}}
+                style={styles.profileImg}
                 source={{uri: item.thumbnails.w160}}
               />
               <View>
-                <Text>{item.title}</Text>
+                <Text style={styles.title}>{item.title}</Text>
                 <Text>{item.description}</Text>
               </View>
             </TouchableOpacity>
@@ -57,7 +60,7 @@ const App = () => {
         }}
 
       />
-      <Text>My First App</Text>
+
 
     </View>
   );
@@ -69,6 +72,34 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  statusBar: {
+    backgroundColor: '#138d75',
+    height: Constants.statusBarHeight,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontFamily: 'sans-serif-light',
+  },
+
+  profileImg: {
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+  },
+  profileContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 3,
+    marginBottom: 3,
+    height: 200,
+    width: 450,
+    borderRadius: 3,
+    borderWidth: 1,
   },
 
 });
